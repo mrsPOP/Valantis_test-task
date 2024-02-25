@@ -6,7 +6,7 @@ const fetchData = async (config: object) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Auth": "36c58664c6a85656502117384b351c40",
+        "X-Auth": "70e9e15f52c7209ab6b6f80b795aa4f2",
       },
       body: JSON.stringify(config),
     });
