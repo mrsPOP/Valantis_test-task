@@ -1,4 +1,5 @@
 import { BASE_URL } from "./config";
+import { generateXAuth } from "@/utils/helperFunctions";
 
 const fetchData = async (config: object) => {
   try {
@@ -6,7 +7,7 @@ const fetchData = async (config: object) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Auth": "70e9e15f52c7209ab6b6f80b795aa4f2",
+        "X-Auth": generateXAuth(),
       },
       body: JSON.stringify(config),
     });
