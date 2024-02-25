@@ -1,5 +1,5 @@
 import { BASE_URL } from "./config";
-import { generateXAuth } from "@/utils/helperFunctions";
+import { generateXAuth } from "@/utils/helpers";
 
 const fetchData = async (config: object) => {
   try {
