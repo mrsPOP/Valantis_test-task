@@ -5,4 +5,4 @@ type Product = {
   brand: string;
 };
 
-type Products = null | Product[];
+type Products = Product[];
