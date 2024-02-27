@@ -5,15 +5,16 @@ import ProductList from "@/components/ProductList";
 import { getFirstRenderProductsList } from "@/utils/helpers";
 import Filter from "@/components/Filter/Filter";
 import Pagination from "@/components/Pagination/Pagination";
+import StoreProvider from "./StoreProvider";
 
 export default async function Home() {
   const firstRenderProductsList = await getFirstRenderProductsList();
 
   return (
-    <>
+    <StoreProvider>
       <Filter />
       <ProductList firstRenderProductsList={firstRenderProductsList} />
-      <Pagination/>
-    </>
+      <Pagination />
+    </StoreProvider>
   );
 }
