@@ -11,9 +11,9 @@ export default async function Home() {
   const firstRenderProductsList = await getFirstRenderProductsList();
 
   return (
-    <StoreProvider>
+    <StoreProvider firstRenderProductsList={firstRenderProductsList}>
       <Filter />
-      <ProductList firstRenderProductsList={firstRenderProductsList} />
+      <ProductList />
       <Pagination />
     </StoreProvider>
   );

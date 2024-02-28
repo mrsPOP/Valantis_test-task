@@ -37,5 +37,6 @@ export const getFirstRenderProductsList = async () => {
   const firstFiftyIds = await getIds({ offset: 0, limit: 50 });
   const uniqueIds = getUniqueIds(firstFiftyIds?.result);
   const items = await getItems({ ids: uniqueIds });
-  return getUniqueItems(items?.result);
+  const uniqueItems = getUniqueItems(items?.result);
+  return uniqueItems;
 };
