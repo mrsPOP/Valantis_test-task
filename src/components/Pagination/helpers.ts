@@ -46,3 +46,27 @@ export const goToNextPage = async ({
     );
   }
 };
+
+export const goToPreviousPage = ({
+  pagination,
+  dispatch,
+  setPagination,
+  setProductsList,
+  loadedPages
+}: GoToPageProps) => {
+  if (!(pagination.currentPage === 1)) {
+    dispatch(
+      setProductsList({
+        productList: loadedPages.get(pagination.currentPage - 1),
+      })
+    );
+    dispatch(
+      setPagination({
+        pagination: {
+          pagesNumber: pagination.pagesNumber,
+          currentPage: pagination.currentPage - 1,
+        },
+      })
+    );
+  }
+};

@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { setPagination } from "@/lib/features/pagination/paginationSlice";
 import { setProductsList } from "@/lib/features/products/productsSlice";
 import { addPage } from "@/lib/features/loadedPages/loadedPagesSlice";
-import { goToNextPage } from "./helpers";
+import { goToNextPage, goToPreviousPage } from "./helpers";
 
 const Pagination = () => {
   const pagination = useAppSelector((state) => state.pagination.pagination);
@@ -14,7 +14,20 @@ const Pagination = () => {
 
   return (
     <div>
-      <button aria-label="previous page">{"<"}</button>
+      <button
+        onClick={() =>
+          goToPreviousPage({
+            pagination,
+            dispatch,
+            setPagination,
+            setProductsList,
+            loadedPages,
+          })
+        }
+        aria-label="previous page"
+      >
+        {"<"}
+      </button>
       <p>{pagination.currentPage}</p>
       <button
         onClick={() =>
