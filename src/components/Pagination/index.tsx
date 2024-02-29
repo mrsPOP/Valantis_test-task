@@ -1,16 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { setPagination } from "@/lib/features/pagination/paginationSlice";
 import { setProductsList } from "@/lib/features/products/productsSlice";
 import { addPage } from "@/lib/features/loadedPages/loadedPagesSlice";
-import { goToNextPage, goToPreviousPage } from "./helpers";
+import {
+  goToNextPage,
+  goToPreviousPage,
+  getNextPageProductsInAdvance,
+} from "./helpers";
 
 const Pagination = () => {
   const pagination = useAppSelector((state) => state.pagination.pagination);
   const loadedPages = useAppSelector((state) => state.loadedPages.loadedPages);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    getNextPageProductsInAdvance({
+      loadedPages,
+      dispatch,
+      pagination,
+      addPage,
+    });
+  }, [loadedPages]);
 
   return (
     <div>

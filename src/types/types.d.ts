@@ -7,6 +7,11 @@ type Product = {
 
 type Products = Product[];
 
+type GetNextPageProductsInAdvanceProps = Omit<
+  GoToPageProps,
+  "setPagination" | "setProductsList"
+>;
+
 type GoToPageProps = {
   pagination: {
     pagesNumber: number;
@@ -19,8 +24,7 @@ type GoToPageProps = {
     "productsOnPage/setProductsList"
   >;
   loadedPages: Map<number, Products>;
+  addPage: ActionCreatorWithPayload<any, "loadedPages/addPage">;
 };
 
-type GoToNextPageProps = {
-  addPage: ActionCreatorWithPayload<any, "loadedPages/addPage">;
-} & GoToPageProps;
+type GoToPreviousPageProps = Omit<GoToPageProps, "addPage">;

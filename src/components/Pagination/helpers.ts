@@ -1,6 +1,27 @@
 import { getProductsList } from "@/utils/helpers";
 import { productsNumberOnPage } from "@/utils/constatns";
 
+export const getNextPageProductsInAdvance = async ({
+  loadedPages,
+  dispatch,
+  pagination,
+  addPage,
+}: GetNextPageProductsInAdvanceProps) => {
+  if (!loadedPages.has(pagination.currentPage + 1)) {
+    const offset = pagination.currentPage * productsNumberOnPage;
+    const nextPageProducts = await getProductsList({
+      offset,
+      limit: productsNumberOnPage,
+    });
+    dispatch(
+      addPage({
+        pageNumber: pagination.currentPage + 1,
+        pageInfo: nextPageProducts,
+      })
+    );
+  }
+};
+
 export const goToNextPage = async ({
   loadedPages,
   dispatch,
@@ -8,7 +29,7 @@ export const goToNextPage = async ({
   setPagination,
   setProductsList,
   addPage,
-}: GoToNextPageProps) => {
+}: GoToPageProps) => {
   if (loadedPages.has(pagination.currentPage + 1)) {
     dispatch(
       setProductsList({
@@ -52,8 +73,8 @@ export const goToPreviousPage = ({
   dispatch,
   setPagination,
   setProductsList,
-  loadedPages
-}: GoToPageProps) => {
+  loadedPages,
+}: GoToPreviousPageProps) => {
   if (!(pagination.currentPage === 1)) {
     dispatch(
       setProductsList({
