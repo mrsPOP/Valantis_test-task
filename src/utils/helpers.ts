@@ -33,8 +33,8 @@ const getUniqueItems = (items: Products) => {
   return uniqueItems;
 };
 
-export const getFirstRenderProductsList = async () => {
-  const firstFiftyIds = await getIds({ offset: 0, limit: 50 });
+export const getProductsList = async ({ offset, limit}: { offset: number, limit: number}) => {
+  const firstFiftyIds = await getIds({ offset, limit });
   const uniqueIds = getUniqueIds(firstFiftyIds?.result);
   const items = await getItems({ ids: uniqueIds });
   const uniqueItems = getUniqueItems(items?.result);

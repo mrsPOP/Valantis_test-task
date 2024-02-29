@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "./features/products/productsSlice";
 import paginationReducer from "./features/pagination/paginationSlice";
+import loadedPagesReducer from "./features/loadedPages/loadedPagesSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       productsOnPage: productsReducer,
-      pagination: paginationReducer
+      pagination: paginationReducer,
+      loadedPages: loadedPagesReducer,
     },
   });
 };

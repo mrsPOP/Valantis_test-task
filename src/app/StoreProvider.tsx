@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { makeStore, AppStore } from "../lib/store";
 import { setProductsList } from "@/lib/features/products/productsSlice";
 import { setPagination } from "@/lib/features/pagination/paginationSlice";
+import { addPage } from "@/lib/features/loadedPages/loadedPagesSlice";
 
 export default function StoreProvider({
   firstRenderProductsList,
@@ -16,9 +17,11 @@ export default function StoreProvider({
   const storeRef = useRef<AppStore | null>(null);
   if (!storeRef.current) {
     storeRef.current = makeStore();
+
     storeRef.current.dispatch(
       setProductsList({ productList: firstRenderProductsList })
     );
+
     const productsOnPage = storeRef.current.getState().productsOnPage.products;
     if (productsOnPage.length > 0) {
       storeRef.current.dispatch(
@@ -28,6 +31,12 @@ export default function StoreProvider({
             currentPage: 1,
           },
         })
+      );
+
+      const pageNumber =
+        storeRef.current.getState().pagination.pagination.currentPage;
+      storeRef.current.dispatch(
+        addPage({ pageNumber, pageInfo: productsOnPage })
       );
     }
   }
