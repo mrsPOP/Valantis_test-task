@@ -7,16 +7,18 @@ import Filter from "@/components/Filter";
 import Pagination from "@/components/Pagination";
 import StoreProvider from "./StoreProvider";
 import { productsNumberOnPage } from "@/utils/constatns";
+import { getDataForFiltersSelects } from "@/utils/helpers";
 
 export default async function Home() {
   const firstRenderProductsList = await getProductsList({
     offset: 0,
     limit: productsNumberOnPage,
   });
+  const dataForFiltersSelects = await getDataForFiltersSelects();
 
   return (
     <StoreProvider firstRenderProductsList={firstRenderProductsList}>
-      <Filter />
+      <Filter {...dataForFiltersSelects}/>
       <ProductList />
       <Pagination />
     </StoreProvider>

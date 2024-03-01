@@ -5,6 +5,8 @@ type Product = {
   brand: string;
 };
 
+type Select = "product" | "brand" | "price";
+
 type Products = Product[];
 
 type GetNextPageProductsInAdvanceProps = Omit<
