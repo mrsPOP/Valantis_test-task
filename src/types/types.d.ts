@@ -9,6 +9,12 @@ type Select = "product" | "brand" | "price";
 
 type Products = Product[];
 
+type Product = { product: string };
+type Price = { price: number };
+type Brand = { brand: string };
+
+type Filter = Product | Price | Brand;
+
 type GetNextPageProductsInAdvanceProps = Omit<
   GoToPageProps,
   "setPagination" | "setProductsList"

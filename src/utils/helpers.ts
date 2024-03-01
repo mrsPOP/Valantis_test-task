@@ -1,5 +1,5 @@
+import { filter, getFields, getIds, getItems } from "@/api";
 import md5 from "md5";
-import { getIds, getItems, getFields } from "@/api";
 
 const getCurrentDateInYYYYMMDDFormat = () => {
   const currentDate = new Date();
@@ -33,6 +33,13 @@ const getUniqueItems = (items: Products) => {
   return uniqueItems;
 };
 
+const getUniqueProductList = async (ids: string[]) => {
+  const uniqueIds = getUniqueIds(ids);
+  const items = await getItems({ ids: uniqueIds });
+  const uniqueItems = getUniqueItems(items?.result);
+  return uniqueItems;
+};
+
 export const getProductsList = async ({
   offset,
   limit,
@@ -41,10 +48,7 @@ export const getProductsList = async ({
   limit: number;
 }) => {
   const firstFiftyIds = await getIds({ offset, limit });
-  const uniqueIds = getUniqueIds(firstFiftyIds?.result);
-  const items = await getItems({ ids: uniqueIds });
-  const uniqueItems = getUniqueItems(items?.result);
-  return uniqueItems;
+  return await getUniqueProductList(firstFiftyIds?.result);
 };
 
 export const getDataForFiltersSelects = async () => {
@@ -58,4 +62,9 @@ export const getDataForFiltersSelects = async () => {
   price = new Set(price);
 
   return { brand, product, price };
+};
+
+export const getFilteredProducts = async (filters: Filter) => {
+  const filtered = await filter(filters);
+  return await getUniqueProductList(filtered?.result);
 };
