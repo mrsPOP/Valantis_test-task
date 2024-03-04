@@ -9,11 +9,12 @@ type Select = "product" | "brand" | "price";
 
 type Products = Product[];
 
-type Product = { product: string };
-type Price = { price: number };
-type Brand = { brand: string };
+type Filter = {
+  product?: string;
+  brand?: string;
+  price?: number;
+};
 
-type Filter = Product | Price | Brand;
 
 type GetNextPageProductsInAdvanceProps = Omit<
   GoToPageProps,

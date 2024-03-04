@@ -9,6 +9,9 @@ const paginationSlice = createSlice({
     setPagination(state, action) {
       state.pagination = action.payload.pagination;
     },
+    resetPagination(state) {
+      state.pagination = { pagesNumber: 0, currentPage: 0 };
+    }
   },
 });
 

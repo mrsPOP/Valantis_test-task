@@ -43,10 +43,15 @@ const getUniqueProductList = async (ids: string[]) => {
 export const getProductsList = async ({
   offset,
   limit,
+  ids,
 }: {
   offset: number;
   limit: number;
+  ids?: string[];
 }) => {
+  if (ids) {
+    return await getUniqueProductList(ids);
+  }
   const firstFiftyIds = await getIds({ offset, limit });
   return await getUniqueProductList(firstFiftyIds?.result);
 };
@@ -67,4 +72,9 @@ export const getDataForFiltersSelects = async () => {
 export const getFilteredProducts = async (filters: Filter) => {
   const filtered = await filter(filters);
   return await getUniqueProductList(filtered?.result);
+};
+
+export const getFilteredProductsIds = async (filters: Filter) => {
+  const filtered = await filter(filters);
+  return filtered?.result;
 };

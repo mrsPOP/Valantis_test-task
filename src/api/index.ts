@@ -1,7 +1,7 @@
 import { BASE_URL } from "./config";
 import { generateXAuth } from "@/utils/helpers";
 
-const fetchData = async (config: object) => {
+const fetchData = async (config: object, retries = 5): Promise<any> => {
   try {
     const response = await fetch(BASE_URL, {
       method: "POST",
@@ -12,12 +12,15 @@ const fetchData = async (config: object) => {
       body: JSON.stringify(config),
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    if (response.ok) {
+      return await response.json();
     }
 
-    const responseJson = await response.json();
-    return responseJson;
+    if (retries > 0) {
+      return fetchData(config, retries - 1);
+    }
+    
+    throw new Error(`HTTP error! Status: ${response.status}`);
   } catch (error) {
     console.error("Произошла ошибка:", error);
     return null;
