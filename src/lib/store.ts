@@ -3,6 +3,7 @@ import productsReducer from "./features/products/productsSlice";
 import paginationReducer from "./features/pagination/paginationSlice";
 import loadedPagesReducer from "./features/loadedPages/loadedPagesSlice";
 import filterReducer from "./features/filter/filterSlice";
+import filteredPagesReducer from "./features/filteredPages/filteredPagesSlice";
 
 export const makeStore = () => {
   return configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () => {
       pagination: paginationReducer,
       loadedPages: loadedPagesReducer,
       filter: filterReducer,
+      filteredPages: filteredPagesReducer,
     },
   });
 };

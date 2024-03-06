@@ -1,11 +1,13 @@
 import { setFilter } from "@/lib/features/filter/filterSlice";
-import { setProductsList } from "@/lib/features/products/productsSlice";
+import {
+  addFilteredPage,
+  resetFilteredPages,
+} from "@/lib/features/filteredPages/filteredPagesSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { getFilteredProducts } from "@/utils/helpers";
+import { getFilteredProductsIds, getProductsList } from "@/utils/helpers";
 import { ChangeEvent, useEffect, useId, useState } from "react";
 import { selects } from "./helpers";
 import styles from "./styles.module.css";
-import { productsNumberOnPage } from "@/utils/constatns";
 
 type Props = {
   select: Select;
@@ -19,7 +21,6 @@ export default function Select({ select, selectData }: Props) {
   const options = [...selectData];
 
   const filter = useAppSelector((state) => state.filter.filter as Filter);
-  const productsList = useAppSelector((state) => state.productsOnPage.products);
   const dispatch = useAppDispatch();
 
   const handleInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,16 +41,23 @@ export default function Select({ select, selectData }: Props) {
     if (!filter[select]) {
       setInputValue("");
     }
-    const getProduts = async () => {
+    const getProducts = async () => {
       if (!(Object.keys(filter).length === 0)) {
-        const filteredProducts = await getFilteredProducts(filter);
-        if (filteredProducts.length > productsNumberOnPage) {
-
+        const filteredIds = await getFilteredProductsIds(filter);
+        const filteredProducts = await getProductsList({ ids: filteredIds });
+        if (filteredProducts.length > 0) {
+          dispatch(resetFilteredPages());
+          const range = Math.ceil(filteredProducts.length / 50);
+          for (let i = 1; i <= range; i++) {
+            const fiftyProducts = filteredProducts.splice(0, 50);
+            dispatch(
+              addFilteredPage({ pageNumber: i, pageInfo: fiftyProducts })
+            );
+          }
         }
-        dispatch(setProductsList({ productList: filteredProducts }));
       }
     };
-    getProduts();
+    getProducts();
   }, [filter]);
 
   return (

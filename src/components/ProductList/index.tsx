@@ -1,11 +1,20 @@
 "use client";
 
-import React from "react";
+import { setProductsList } from "@/lib/features/products/productsSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useEffect } from "react";
 import ProductItem from "../ProductItem";
-import { useAppSelector } from "@/lib/hooks";
 
 const ProductList = () => {
   const productsList = useAppSelector((state) => state.productsOnPage.products);
+  const filteredPages = useAppSelector((state) => state.filteredPages.filteredPages);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (filteredPages.has(1)) {
+      dispatch(setProductsList({ productList: filteredPages.get(1) }));
+    }
+  }, [filteredPages]);
 
   return (
     <ul>
