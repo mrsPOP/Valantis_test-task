@@ -9,9 +9,12 @@ const setFilterSlice = createSlice({
     setFilter(state, action) {
       state.filter = action.payload.filter;
     },
+    resetFilter(state) {
+      state.filter = {};
+    },
   },
 });
 
-export const { setFilter } = setFilterSlice.actions;
+export const { setFilter, resetFilter } = setFilterSlice.actions;
 
 export default setFilterSlice.reducer;
