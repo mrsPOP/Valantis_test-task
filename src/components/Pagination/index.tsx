@@ -19,8 +19,6 @@ const Pagination = () => {
   );
   const dispatch = useAppDispatch();
 
-  const paginationIsVisible = filteredPages.has(2);
-
   useEffect(() => {
     if (!filteredPages.has(1)) {
       getNextPageProductsInAdvance({
@@ -34,44 +32,40 @@ const Pagination = () => {
   }, [loadedPages]);
 
   return (
-    <>
-      {paginationIsVisible && (
-        <div>
-          <button
-            onClick={() =>
-              goToPreviousPage({
-                pagination,
-                dispatch,
-                setPagination,
-                setProductsList,
-                loadedPages,
-                filteredPages,
-              })
-            }
-            aria-label="previous page"
-          >
-            {"<"}
-          </button>
-          <p>{pagination.currentPage}</p>
-          <button
-            onClick={() =>
-              goToNextPage({
-                filteredPages,
-                loadedPages,
-                dispatch,
-                pagination,
-                setPagination,
-                setProductsList,
-                addPage,
-              })
-            }
-            aria-label="next page"
-          >
-            {">"}
-          </button>
-        </div>
-      )}
-    </>
+    <div>
+      <button
+        onClick={() =>
+          goToPreviousPage({
+            pagination,
+            dispatch,
+            setPagination,
+            setProductsList,
+            loadedPages,
+            filteredPages,
+          })
+        }
+        aria-label="previous page"
+      >
+        {"<"}
+      </button>
+      <p>{pagination.currentPage}</p>
+      <button
+        onClick={() =>
+          goToNextPage({
+            filteredPages,
+            loadedPages,
+            dispatch,
+            pagination,
+            setPagination,
+            setProductsList,
+            addPage,
+          })
+        }
+        aria-label="next page"
+      >
+        {">"}
+      </button>
+    </div>
   );
 };
 
