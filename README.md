@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Valantis product list ✨✨✨
 
-## Getting Started
+The project was created to apply for a vacancy at Valantis.
+Этот проект был создан в целях подачи заявки на вакансию в компании Valantis.
 
-First, run the development server:
+## Tech-Stack:
+- TypeScript
+- React
+- Next.js
+- Redux toolkit
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Description:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The page displays a list of products with the ability to filter by one of the criteria: price, product name, brand. Pagination functionality is also implemented.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+In case of errors when sending requests to the server, a comment and error description are output to the console.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The initial render occurs on the server, so the first page is displayed instantly. If the next page exists, it is preloaded. The loaded pages are cached.
 
-## Learn More
+Описание:
 
-To learn more about Next.js, take a look at the following resources:
+На странице отображается список товаров с возможностью фильтрации по одному из фильтров: цена, название товара, бренд. Также реализована пагинация.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+При отправке запросов на сервер в случае ошибки в консоль выводится комментарий и описание ошибки.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Первый рендер происходит на сервере, поэтому первая страница отображается мгновенно. Если следующая страница есть - она подгружается заранее. Загруженные страницы кэшируются.
