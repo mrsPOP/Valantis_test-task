@@ -22,6 +22,7 @@ type GetNextPageProductsInAdvanceProps = Omit<
 >;
 
 type GoToPageProps = {
+  filteredPages: Map<number, Products>,
   pagination: {
     pagesNumber: number;
     currentPage: number;

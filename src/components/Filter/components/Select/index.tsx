@@ -8,6 +8,7 @@ import { getFilteredProductsIds, getProductsList } from "@/utils/helpers";
 import { ChangeEvent, useEffect, useId, useState } from "react";
 import { selects } from "./helpers";
 import styles from "./styles.module.css";
+import { setPagination, resetPagination } from "@/lib/features/pagination/paginationSlice";
 
 type Props = {
   select: Select;
@@ -41,6 +42,7 @@ export default function Select({ select, selectData }: Props) {
     if (!filter[select]) {
       setInputValue("");
     }
+    dispatch(resetPagination());
     const getProducts = async () => {
       if (!(Object.keys(filter).length === 0)) {
         const filteredIds = await getFilteredProductsIds(filter);
@@ -48,6 +50,12 @@ export default function Select({ select, selectData }: Props) {
         if (filteredProducts.length > 0) {
           dispatch(resetFilteredPages());
           const range = Math.ceil(filteredProducts.length / 50);
+          setPagination({
+            pagination: {
+              pagesNumber: range,
+              currentPage: 1,
+            },
+          });
           for (let i = 1; i <= range; i++) {
             const fiftyProducts = filteredProducts.splice(0, 50);
             dispatch(

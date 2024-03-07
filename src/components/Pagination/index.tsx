@@ -14,15 +14,21 @@ import {
 const Pagination = () => {
   const pagination = useAppSelector((state) => state.pagination.pagination);
   const loadedPages = useAppSelector((state) => state.loadedPages.loadedPages);
+  const filteredPages = useAppSelector(
+    (state) => state.filteredPages.filteredPages
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getNextPageProductsInAdvance({
-      loadedPages,
-      dispatch,
-      pagination,
-      addPage,
-    });
+    if (!filteredPages.has(1)) {
+      getNextPageProductsInAdvance({
+        loadedPages,
+        dispatch,
+        pagination,
+        addPage,
+        filteredPages,
+      });
+    }
   }, [loadedPages]);
 
   return (
@@ -35,6 +41,7 @@ const Pagination = () => {
             setPagination,
             setProductsList,
             loadedPages,
+            filteredPages,
           })
         }
         aria-label="previous page"
@@ -45,6 +52,7 @@ const Pagination = () => {
       <button
         onClick={() =>
           goToNextPage({
+            filteredPages,
             loadedPages,
             dispatch,
             pagination,
