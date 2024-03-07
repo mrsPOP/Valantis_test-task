@@ -1,6 +1,6 @@
 # Valantis product list ✨✨✨
 
-[**Посмотреть проект Valantis**](https://valantis-test-task-nrfz.vercel.app/)
+[**Посмотреть проект**](https://valantis-test-task-nrfz.vercel.app/)
 
 Этот проект был создан в целях подачи заявки на вакансию в компании Valantis.
 
