@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/lib/hooks";
+import { addPage } from "@/lib/features/loadedPages/loadedPagesSlice";
 import { setPagination } from "@/lib/features/pagination/paginationSlice";
 import { setProductsList } from "@/lib/features/products/productsSlice";
-import { addPage } from "@/lib/features/loadedPages/loadedPagesSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useEffect } from "react";
 import {
+  getNextPageProductsInAdvance,
   goToNextPage,
   goToPreviousPage,
-  getNextPageProductsInAdvance,
 } from "./helpers";
+import styles from "./styles.module.css";
 
 const Pagination = () => {
   const pagination = useAppSelector((state) => state.pagination.pagination);
@@ -29,11 +30,13 @@ const Pagination = () => {
         filteredPages,
       });
     }
-  }, [loadedPages]);
+  }, [pagination]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <button
+        disabled={pagination.currentPage === 1}
+        className={styles.button}
         onClick={() =>
           goToPreviousPage({
             pagination,
@@ -48,8 +51,10 @@ const Pagination = () => {
       >
         {"<"}
       </button>
-      <p>{pagination.currentPage}</p>
+      <p className={styles.number}>{pagination.currentPage}</p>
       <button
+        disabled={!loadedPages.get(pagination.currentPage + 1) || !filteredPages.get(2)}
+        className={styles.button}
         onClick={() =>
           goToNextPage({
             filteredPages,

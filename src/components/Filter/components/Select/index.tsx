@@ -3,12 +3,15 @@ import {
   addFilteredPage,
   resetFilteredPages,
 } from "@/lib/features/filteredPages/filteredPagesSlice";
+import {
+  resetPagination,
+  setPagination,
+} from "@/lib/features/pagination/paginationSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { getFilteredProductsIds, getProductsList } from "@/utils/helpers";
 import { ChangeEvent, useEffect, useId, useState } from "react";
 import { selects } from "./helpers";
 import styles from "./styles.module.css";
-import { setPagination, resetPagination } from "@/lib/features/pagination/paginationSlice";
 
 type Props = {
   select: Select;
@@ -69,8 +72,10 @@ export default function Select({ select, selectData }: Props) {
   }, [filter]);
 
   return (
-    <div>
-      <label htmlFor={labelId}>{selects[select]}</label>
+    <div className={styles.container}>
+      <label className={styles.label} htmlFor={labelId}>
+        {selects[select]}
+      </label>
       <input
         className={styles.input}
         list={datalistId}

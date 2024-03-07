@@ -1,0 +1,17 @@
+.productItem {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.productDetails {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.brand {
+  font-size: 0.8em;
+  color: #f44336;
+}

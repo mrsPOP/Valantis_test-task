@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: 20px;
+  margin-block-end: 40px;
+  font-size: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 0 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: default;
+}
+
+.number {
+  margin: 0 20px;
+}

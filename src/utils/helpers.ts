@@ -65,7 +65,8 @@ export const getDataForFiltersSelects = async () => {
   brand.delete(null);
   product = new Set(product);
   price = new Set(price);
-
+  // @ts-expect-error
+  price = new Set(Array.from(price).sort((a, b) => a - b));
   return { brand, product, price };
 };
 
