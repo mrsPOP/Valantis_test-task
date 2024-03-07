@@ -19,11 +19,13 @@ const fetchData = async (config: object, retries = 5): Promise<any> => {
     if (retries > 0) {
       return fetchData(config, retries - 1);
     }
-    
+
     throw new Error(`HTTP error! Status: ${response.status}`);
-  } catch (error) {
-    console.error("Произошла ошибка:", error);
-    return null;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Произошла ошибка:", error);
+      return null;
+    }
   }
 };
 
