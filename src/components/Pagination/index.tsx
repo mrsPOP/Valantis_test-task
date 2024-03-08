@@ -53,7 +53,10 @@ const Pagination = () => {
       </button>
       <p className={styles.number}>{pagination.currentPage}</p>
       <button
-        disabled={!loadedPages.get(pagination.currentPage + 1) || !filteredPages.get(2)}
+        disabled={
+          (filteredPages.has(1) && !filteredPages.has(2)) ||
+          !loadedPages.get(pagination.currentPage + 1)
+        }
         className={styles.button}
         onClick={() =>
           goToNextPage({
