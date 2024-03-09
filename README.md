@@ -1,5 +1,9 @@
 # Valantis product list ✨✨✨
 
+Этот проект был создан в целях подачи заявки на вакансию в компании Valantis.
+
+The project was created to apply for a vacancy at Valantis.
+
 ## Как посмотреть проект:
 
 Так как у домена API нет SSL-сертификата, чтобы посмотреть проект нужно предварительно разрешить в настройках браузера делать запросы к http://api.valantis.store:40000/. Я использую Chrome, в других браузерах настраивается аналогичным способом.
@@ -23,10 +27,6 @@ Since the API domain does not have an SSL certificate, to view the project, you 
 4. Check Enabled.
 5. Restart the browser.
 6. Now you can access the project through the following [**link**](https://valantis-test-task-nrfz.vercel.app/)
-
-Этот проект был создан в целях подачи заявки на вакансию в компании Valantis.
-
-The project was created to apply for a vacancy at Valantis.
 
 ## Tech-Stack:
 - TypeScript
