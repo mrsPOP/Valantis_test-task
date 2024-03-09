@@ -8,6 +8,7 @@ import {
   setPagination,
 } from "@/lib/features/pagination/paginationSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { productsNumberOnPage } from "@/utils/constatns";
 import { getFilteredProductsIds, getProductsList } from "@/utils/helpers";
 import { ChangeEvent, useEffect, useId, useState } from "react";
 import { selects } from "./helpers";
@@ -60,9 +61,12 @@ export default function Select({ select, selectData }: Props) {
             },
           });
           for (let i = 1; i <= range; i++) {
-            const fiftyProducts = filteredProducts.splice(0, 50);
+            const products = filteredProducts.splice(
+              0,
+              productsNumberOnPage
+            );
             dispatch(
-              addFilteredPage({ pageNumber: i, pageInfo: fiftyProducts })
+              addFilteredPage({ pageNumber: i, pageInfo: products })
             );
           }
         }
