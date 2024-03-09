@@ -50,4 +50,10 @@ In case of errors when sending requests to the server, a comment and error descr
 
 The initial render occurs on the server, so the first page is displayed instantly. If the next page exists, it is preloaded. The loaded pages are cached.
 
+## Что можно улучшить
+
+- В консоле присутствует ошибка "A non-serializable value was detected in the state". Ошибка возникает из-за того, что в состоянии (state) приложения присутствует значение, которое не может быть сериализовано (не может быть преобразован в строку JSON) - Map.
+
+## Areas for Improvement
+- In the console, there is an error "A non-serializable value was detected in the state". The error occurs because the application's state contains a value that cannot be serialized (cannot be converted to a JSON string) - Map.
 
