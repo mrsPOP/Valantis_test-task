@@ -19,6 +19,8 @@ const Pagination = () => {
     (state) => state.filteredPages.filteredPages
   );
   const dispatch = useAppDispatch();
+  const isVisible =
+    (filteredPages.has(1) && filteredPages.has(2)) || !filteredPages.has(1);
 
   useEffect(() => {
     if (!filteredPages.has(1)) {
@@ -33,47 +35,51 @@ const Pagination = () => {
   }, [pagination]);
 
   return (
-    <div className={styles.container}>
-      <button
-        disabled={pagination.currentPage === 1}
-        className={styles.button}
-        onClick={() =>
-          goToPreviousPage({
-            pagination,
-            dispatch,
-            setPagination,
-            setProductsList,
-            loadedPages,
-            filteredPages,
-          })
-        }
-        aria-label="previous page"
-      >
-        {"<"}
-      </button>
-      <p className={styles.number}>{pagination.currentPage}</p>
-      <button
-        disabled={
-          (filteredPages.has(1) && !filteredPages.has(2)) ||
-          !loadedPages.get(pagination.currentPage + 1)
-        }
-        className={styles.button}
-        onClick={() =>
-          goToNextPage({
-            filteredPages,
-            loadedPages,
-            dispatch,
-            pagination,
-            setPagination,
-            setProductsList,
-            addPage,
-          })
-        }
-        aria-label="next page"
-      >
-        {">"}
-      </button>
-    </div>
+    <>
+      {isVisible && (
+        <div className={styles.container}>
+          <button
+            disabled={pagination.currentPage === 1}
+            className={styles.button}
+            onClick={() =>
+              goToPreviousPage({
+                pagination,
+                dispatch,
+                setPagination,
+                setProductsList,
+                loadedPages,
+                filteredPages,
+              })
+            }
+            aria-label="previous page"
+          >
+            {"<"}
+          </button>
+          <p className={styles.number}>{pagination.currentPage}</p>
+          <button
+            disabled={
+              (filteredPages.has(1) && !filteredPages.has(2)) ||
+              !loadedPages.get(pagination.currentPage + 1)
+            }
+            className={styles.button}
+            onClick={() =>
+              goToNextPage({
+                filteredPages,
+                loadedPages,
+                dispatch,
+                pagination,
+                setPagination,
+                setProductsList,
+                addPage,
+              })
+            }
+            aria-label="next page"
+          >
+            {">"}
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
