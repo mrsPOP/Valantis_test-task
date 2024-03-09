@@ -13,6 +13,17 @@
 
 [**Посмотреть проект**](https://valantis-test-task-nrfz.vercel.app/)
 
+## Viewing the Project:
+
+Since the API domain does not have an SSL certificate, to view the project, you need to allow requests to be made to http://api.valantis.store:40000/ in the browser settings. I use Chrome, and in other browsers, it can be configured in a similar way.
+
+1. Type in the address bar: chrome://flags/
+2. In the search, type: Insecure origins treated as secure.
+3. Enter the following URL in the field: http://api.valantis.store:40000/
+4. Check Enabled.
+5. Restart the browser.
+6. Now you can access the project through the following [**link**](https://valantis-test-task-nrfz.vercel.app/)
+
 Этот проект был создан в целях подачи заявки на вакансию в компании Valantis.
 
 The project was created to apply for a vacancy at Valantis.
