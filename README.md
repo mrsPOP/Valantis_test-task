@@ -1,5 +1,9 @@
 # Valantis product list ✨✨✨
 
+Этот проект был создан в целях подачи заявки на вакансию в компании Valantis.
+
+The project was created to apply for a vacancy at Valantis.
+
 ## Как посмотреть проект:
 
 Так как у домена API нет SSL-сертификата, чтобы посмотреть проект нужно предварительно разрешить в настройках браузера делать запросы к http://api.valantis.store:40000/. Я использую Chrome, в других браузерах настраивается аналогичным способом.
@@ -13,9 +17,16 @@
 
 [**Посмотреть проект**](https://valantis-test-task-nrfz.vercel.app/)
 
-Этот проект был создан в целях подачи заявки на вакансию в компании Valantis.
+## Viewing the Project:
 
-The project was created to apply for a vacancy at Valantis.
+Since the API domain does not have an SSL certificate, to view the project, you need to allow requests to be made to http://api.valantis.store:40000/ in the browser settings. I use Chrome, and in other browsers, it can be configured in a similar way.
+
+1. Type in the address bar: chrome://flags/
+2. In the search, type: Insecure origins treated as secure.
+3. Enter the following URL in the field: http://api.valantis.store:40000/
+4. Check Enabled.
+5. Restart the browser.
+6. Now you can access the project through the following [**link**](https://valantis-test-task-nrfz.vercel.app/)
 
 ## Tech-Stack:
 - TypeScript
@@ -39,4 +50,10 @@ In case of errors when sending requests to the server, a comment and error descr
 
 The initial render occurs on the server, so the first page is displayed instantly. If the next page exists, it is preloaded. The loaded pages are cached.
 
+## Что можно улучшить
+
+- В консоле присутствует ошибка "A non-serializable value was detected in the state". Ошибка возникает из-за того, что в состоянии (state) приложения присутствует значение, которое не может быть сериализовано (не может быть преобразован в строку JSON) - Map.
+
+## Areas for Improvement
+- In the console, there is an error "A non-serializable value was detected in the state". The error occurs because the application's state contains a value that cannot be serialized (cannot be converted to a JSON string) - Map.
 
